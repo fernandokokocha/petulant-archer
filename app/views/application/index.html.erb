@@ -1,0 +1,12 @@
+<% if current_user %>
+  Hi, <%= current_user.email %>
+  <br>
+  You look like this: <%= image_tag current_user.image %>
+<% end %>
+
+<script type="text/javascript">
+  if(window.opener) {
+    window.opener.location.reload(true);
+    window.close();
+  }
+</script>
