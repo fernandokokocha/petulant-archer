@@ -53,7 +53,7 @@ var OrderPanel = function(order, index) {
             <div className="panel-body">
                 <div className="row">
                     <div className="col-md-3"><img src={order.user_image} /></div>
-                    <div className="col-md-3">{order.created_at}</div>
+                    <div className="col-md-3"><h4>{order.created_at}</h4></div>
                     <div className="col-md-6 break-words"><h4>{order.content}</h4></div>
                 </div>
             </div>
