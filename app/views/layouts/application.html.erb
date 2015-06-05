@@ -14,6 +14,7 @@
 
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%= yield :javascript_includes %>
   </head>
   <body>
 
@@ -26,13 +27,15 @@
         </button>
         <%= link_to 'Meals', root_path, :class => "navbar-brand" %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-              <li><%= link_to "Sign out", annihilate_user_session_path %></li>
-            <% else %>
-              <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), :class => "popup", :"data-width" => 600, :"data-height" => 400 %></li>
-            <% end %>
-          </ul>
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= image_tag current_user.image %>
+                <%= current_user.email %>
+              </li>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => "DELETE" %></li>
+            </ul>
+          <% end %>
         </div>
       </div>
     </div>
@@ -41,13 +44,8 @@
       <div class="content">
         <%= bootstrap_flash %>
         <%= yield %>
-      </div><!--/row-->
-
-      <footer>
-        <p>&copy; Bartek 2015</p>
-      </footer>
-
-    </div> <!-- /container -->
+      </div>
+    </div>
 
   </body>
 </html>
