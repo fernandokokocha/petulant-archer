@@ -39,29 +39,29 @@ var MealsApp = React.createClass({
         var nextFinalizedOrder = [msg].concat(this.state.activeOrders);
         this.setState({activeOrders: nextFinalizedOrder});
     },
-    handleFinalize: function(finalizedId, newOrder) {
+    handleFinalize: function(orderId, newOrder) {
         var newFinalizedOrders = [newOrder].concat(this.state.finalizedOrders);
         this.setState({finalizedOrders: newFinalizedOrders});
 
         var newActiveOrders = this.state.activeOrders.filter(function(order) {
-            return order.id != finalizedId
+            return order.id != orderId
         });
         this.setState({activeOrders: newActiveOrders});
     },
-    handleStateChange: function(orderedId, newOrder) {
+    handleStateChange: function(orderId, newOrder) {
         var newFinalizedOrders = this.state.finalizedOrders;
         var index;
         for (index = 0; index < newFinalizedOrders.length; ++index) {
-            if (newFinalizedOrders[index].id == orderedId)
+            if (newFinalizedOrders[index].id == orderId)
                 newFinalizedOrders[index] = newOrder;
         }
         this.setState({finalizedOrders: newFinalizedOrders});
     },
-    handleNewComment: function(orderedId, newOrder) {
+    handleNewComment: function(orderId, newOrder) {
         var newActiveOrders = this.state.activeOrders;
         var index;
         for (index = 0; index < newActiveOrders.length; ++index) {
-            if (newActiveOrders[index].id == orderedId)
+            if (newActiveOrders[index].id == orderId)
                 newActiveOrders[index] = newOrder;
         }
         this.setState({activeOrders: newActiveOrders});
@@ -79,7 +79,7 @@ var MealsApp = React.createClass({
                     <div className="col-md-6">
                         <div>
                             <h3>Active orders</h3>
-                                <OrderForm afterSuccess={this.handleNewOrder} />;
+                                <OrderForm afterSuccess={this.handleNewOrder} />
                             <div>
                                 {this.state.activeOrders.map(OrderPanel, this)}
                             </div>
@@ -95,6 +95,6 @@ var MealsApp = React.createClass({
                     </div>
                 </div>
            </div>
-        );
+        )
     }
 });

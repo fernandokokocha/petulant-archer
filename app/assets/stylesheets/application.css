@@ -34,3 +34,7 @@
 .panel-body {
     background:#DDDDDD;
 }
+
+.break-words {
+    word-wrap:break-word;
+}

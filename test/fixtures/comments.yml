@@ -2,10 +2,10 @@
 
 one:
   content: MyString
-  user_id: 
-  order_id: 
+  user: one
+  order: one
 
 two:
   content: MyString
-  user_id: 
-  order_id: 
+  user: two
+  order: two

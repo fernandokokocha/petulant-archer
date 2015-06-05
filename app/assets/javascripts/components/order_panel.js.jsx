@@ -30,7 +30,7 @@ var OrderPanel = function(order, index) {
                     <div className="col-md-3">
                         {comment.time}
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 break-words">
                         <strong>{comment.content}</strong>
                     </div>
                 </div>
@@ -54,7 +54,7 @@ var OrderPanel = function(order, index) {
                 <div className="row">
                     <div className="col-md-3"><img src={order.user_image} /></div>
                     <div className="col-md-3">{order.created_at}</div>
-                    <div className="col-md-6"><h4>{order.content}</h4></div>
+                    <div className="col-md-6 break-words"><h4>{order.content}</h4></div>
                 </div>
             </div>
             <ul className="list-group">

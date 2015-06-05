@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def hash_from_order(order)
+  def hash_from_order(order, current_user)
     day_format = '%y-%m-%d'
     time_format = '%H:%M'
 
