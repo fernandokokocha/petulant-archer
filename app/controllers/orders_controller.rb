@@ -27,10 +27,9 @@ class OrdersController < ApplicationController
     comment = Comment.new(:content => params[:content],
                           :user => current_user,
                           :order => Order.find(params[:id]))
-                     .decorate
     if comment.valid?
       comment.save!
-      render json: comment.order.hash_form(current_user)
+      render json: comment.order.decorate.hash_form(current_user)
     else
       render json: { :errors => comment.errors.full_messages }, :status => 400
     end
