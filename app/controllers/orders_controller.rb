@@ -38,8 +38,8 @@ class OrdersController < ApplicationController
 
   def get_orders
     orders = Order.all.order('updated_at DESC')
-    @active_orders = orders.where(state: 'active').map{ |order| hash_from_order(order, current_user)  }
-    @finalized_orders = orders.where.not(state: 'active').map{ |order| hash_from_order(order, current_user)  }
-    render :json => { :activeOrders => @active_orders, :finalizedOrders => @finalized_orders }
+    active_orders = orders.where(state: 'active').map{ |order| hash_from_order(order, current_user)  }
+    finalized_orders = orders.where.not(state: 'active').map{ |order| hash_from_order(order, current_user)  }
+    render :json => { :activeOrders => active_orders, :finalizedOrders => finalized_orders }
   end
 end
