@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include ApplicationHelper
 
   def welcome
     if current_user
@@ -10,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def app
     authenticate_user!
-    @active_orders = Order.active.map{ |order| hash_from_order(order, current_user)  }
-    @finalized_orders = Order.finalized.map{ |order| hash_from_order(order, current_user)  }
+    @active_orders = Order.active.map{ |order| order.hash_form(current_user)  }
+    @finalized_orders = Order.finalized.map{ |order| order.hash_form(current_user)  }
   end
 end

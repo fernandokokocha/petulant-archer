@@ -1,13 +1,11 @@
 class OrdersController < ApplicationController
-  include ApplicationHelper
-
   def new_order
     order = Order.new(:content => params[:content],
                       :state => 'active',
                       :user => current_user)
     if order.valid?
       order.save!
-      render json: hash_from_order(order, current_user)
+      render json: order.hash_form(current_user)
     else
       render json: { :errors => order.errors.full_messages }, :status => 400
     end
@@ -18,7 +16,7 @@ class OrdersController < ApplicationController
     order.state = params[:state]
     if order.valid?
       order.save!
-      render json: hash_from_order(order, current_user)
+      render json: order.hash_form(current_user)
     else
       head(:bad_request)
     end
@@ -30,15 +28,15 @@ class OrdersController < ApplicationController
                           :order => Order.find(params[:id]))
     if comment.valid?
       comment.save!
-      render json: hash_from_order(comment.order, current_user)
+      render json: comment.order.hash_form(current_user)
     else
       render json: { :errors => comment.errors.full_messages }, :status => 400
     end
   end
 
   def get_orders
-    active_orders = Order.active.map{ |order| hash_from_order(order, current_user)  }
-    finalized_orders = Order.finalized.map{ |order| hash_from_order(order, current_user)  }
+    active_orders = Order.active.map{ |order| order.hash_form(current_user)  }
+    finalized_orders = Order.finalized.map{ |order| order.hash_form(current_user)  }
     render :json => { :activeOrders => active_orders, :finalizedOrders => finalized_orders }
   end
 end
