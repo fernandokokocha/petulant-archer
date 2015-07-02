@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'application#welcome'
-  get '/app', to: 'application#app'
+  root to: 'welcome#index'
+  get '/app', to: 'welcome#app'
   post '/new_order', to: 'orders#new_order'
   post '/change_order_state', to: 'orders#change_order_state'
   post '/new_comment', to: 'orders#new_comment'
