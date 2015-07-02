@@ -10,8 +10,8 @@ var MealsApp = React.createClass({
         var newTimer = (this.state.timer - 1);
         if (newTimer < 1) {
             var request = $.ajax({
-                method: "POST",
-                url: "get_orders"
+                method: "GET",
+                url: "orders"
             });
             request.done(function( msg ) {
                 var nextActiveOrder = msg.activeOrders;

@@ -11,8 +11,8 @@ var OrderForm = React.createClass({
         var content = this.state.text;
         var request = $.ajax({
             method: "POST",
-            url: "new_order",
-            data: { content: content }
+            url: "orders",
+            data: { order: { content: content, state: 'active' } }
         });
         request.done(function( msg ) {
             var nextText = '';

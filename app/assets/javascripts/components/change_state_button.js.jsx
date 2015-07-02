@@ -5,9 +5,9 @@ var ChangeStateButton = React.createClass({
         var state = this.props.newState;
         var id = this.props.id;
         var request = $.ajax({
-            method: "POST",
-            url: "change_order_state",
-            data: { id: id, state: state }
+            method: "PATCH",
+            url: "orders/" + id,
+            data: { order: { state: state } }
         });
         request.done(function( msg ) {
             component.props.afterSuccess(component.props.id, msg);

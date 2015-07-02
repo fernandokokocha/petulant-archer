@@ -9,11 +9,11 @@ var CommentForm = React.createClass({
         e.preventDefault();
         var component = this;
         var content = this.state.text;
-        var id = this.props.id;
+        var order_id = this.props.id;
         var request = $.ajax({
             method: "POST",
-            url: "new_comment",
-            data: { content: content, id: id }
+            url: "comments",
+            data: { order_id: order_id, comment: { content: content } }
         });
         request.done(function( msg ) {
             component.props.afterSuccess(component.props.id, msg)
