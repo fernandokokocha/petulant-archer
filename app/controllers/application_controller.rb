@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
 
   def app
     authenticate_user!
-    orders = Order.all.order('updated_at DESC')
-    @active_orders = orders.where(state: 'active').map{ |order| hash_from_order(order, current_user)  }
-    @finalized_orders = orders.where.not(state: 'active').map{ |order| hash_from_order(order, current_user)  }
+    @active_orders = Order.active.map{ |order| hash_from_order(order, current_user)  }
+    @finalized_orders = Order.finalized.map{ |order| hash_from_order(order, current_user)  }
   end
 end
