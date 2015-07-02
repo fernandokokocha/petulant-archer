@@ -10,9 +10,9 @@ module ApplicationHelper
      :user_image => order.user.image,
      :id => order.id,
      :state => order.state,
-     :comments => order.comments.map { |c| { :user_image => c.user.image,
-                                             :content => c.content,
-                                             :time => c.created_at.strftime(time_format) } },
+     :comments => order.comments.map { |comment| { :user_image => comment.user.image,
+                                                   :content => comment.content,
+                                                   :time => comment.created_at.strftime(time_format) } },
      :can_comment => order.comments.where(user: current_user).empty?
     }
   end
