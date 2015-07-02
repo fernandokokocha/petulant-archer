@@ -9,43 +9,43 @@ class OrderTest < ActiveSupport::TestCase
 
   test 'order requires content' do
     params = @valid_params.without(:content)
-    o = Order.new(params)
-    assert_not o.valid?
+    order = Order.new(params)
+    assert_not order.valid?
   end
 
   test 'order requires non-empty content' do
     params = @valid_params
     params[:content] = ''
-    o = Order.new(params)
-    assert_not o.valid?
+    order = Order.new(params)
+    assert_not order.valid?
   end
 
   test 'order requires user' do
     params = @valid_params.without(:user)
-    o = Order.new(params)
-    assert_not o.valid?
+    order = Order.new(params)
+    assert_not order.valid?
   end
 
   test 'order requires state' do
     params = @valid_params.without(:state)
-    o = Order.new(params)
-    assert_not o.valid?
+    order = Order.new(params)
+    assert_not order.valid?
   end
 
   test 'order requires one of valid states' do
     params = @valid_params
     params[:state] = 'Invalid state'
-    o = Order.new(params)
-    assert_not o.valid?
+    order = Order.new(params)
+    assert_not order.valid?
   end
 
   test 'order can be valid' do
-    o = Order.new(@valid_params)
-    assert o.valid?
+    order = Order.new(@valid_params)
+    assert order.valid?
   end
 
   test 'order has active state after save' do
-    o = Order.create(@valid_params)
-    assert 'active', o.state
+    order = Order.create(@valid_params)
+    assert 'active', order.state
   end
 end
