@@ -1,2 +1,3 @@
-<%= react_component('MealsApp', {activeOrders: @active_orders, finalizedOrders: @finalized_orders} ) %>
+<%= react_component('MealsApp', {activeOrders: @active_orders.map{ |order| order.hash_form(current_user) },
+                                 finalizedOrders: @finalized_orders.map{ |order| order.hash_form(current_user) } } ) %>
 

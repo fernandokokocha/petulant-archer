@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
     order = Order.new(:content => params[:content],
                       :state => 'active',
                       :user => current_user)
+                 .decorate
     if order.valid?
       order.save!
       render json: order.hash_form(current_user)
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def change_order_state
-    order = Order.find(params[:id])
+    order = Order.find(params[:id]).decorate
     order.state = params[:state]
     if order.valid?
       order.save!
@@ -26,6 +27,7 @@ class OrdersController < ApplicationController
     comment = Comment.new(:content => params[:content],
                           :user => current_user,
                           :order => Order.find(params[:id]))
+                     .decorate
     if comment.valid?
       comment.save!
       render json: comment.order.hash_form(current_user)
@@ -35,8 +37,8 @@ class OrdersController < ApplicationController
   end
 
   def get_orders
-    active_orders = Order.active.map{ |order| order.hash_form(current_user)  }
-    finalized_orders = Order.finalized.map{ |order| order.hash_form(current_user)  }
+    active_orders = Order.active.decorate.map{ |order| order.hash_form(current_user)  }
+    finalized_orders = Order.finalized.decorate.map{ |order| order.hash_form(current_user)  }
     render :json => { :activeOrders => active_orders, :finalizedOrders => finalized_orders }
   end
 end

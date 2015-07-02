@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def app
     authenticate_user!
-    @active_orders = Order.active.map{ |order| order.hash_form(current_user)  }
-    @finalized_orders = Order.finalized.map{ |order| order.hash_form(current_user)  }
+    @active_orders = Order.active.decorate
+    @finalized_orders = Order.finalized.decorate
   end
 end
