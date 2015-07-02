@@ -1,28 +1,9 @@
-== README
+== Common meals
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Did you ever want to share your meals ideas with your friends, but had no tools? Try this fully SPA with login via Facebook!
 
-Things you may want to cover:
+* Everyone can add an order
 
-* Ruby version
+* Everyone can add a comment to an order (but only once!)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* You can track all order, both active and finalized, and change their statuses
