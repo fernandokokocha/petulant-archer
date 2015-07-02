@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def new_order
     order = Order.new(:content => params[:content],
                       :state => 'active',
