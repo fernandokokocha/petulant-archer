@@ -42,8 +42,10 @@ var OrderPanel = function(order, index) {
             <div className="panel-heading">
                 <div className="row">
                     <div className="col-md-4">{order.day}</div>
-                    <div className="col-md-4">{order.state} since {order.time}</div>
                     <div className="col-md-4">
+                        <strong>{order.state}</strong> since {order.time}
+                    </div>
+                    <div className="col-md-4 right-text-align">
                         {finalizeButton}
                         {orderedButton}
                         {deliveredButton}
