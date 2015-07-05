@@ -6,4 +6,4 @@ Did you ever want to share your meals ideas with your friends, but had no tools?
 
 * Everyone can add a comment to an order (but only once!)
 
-* You can track all order, both active and finalized, and change their statuses
+* You can track all orders, both active and finalized, and change their statuses
