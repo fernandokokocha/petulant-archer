@@ -21,10 +21,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params).decorate
+    @order = Order.new(order_params)
     @order.user = current_user
     if @order.save
-      render json: @order.hash_form(current_user)
+      render json: @order.decorate.hash_form(current_user)
     else
       render json: { :errors => @order.errors.full_messages }, :status => 400
     end
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      render json: @order.hash_form(current_user)
+      render json: @order.decorate.hash_form(current_user)
     else
       head(:bad_request)
     end
@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
 
   private
   def set_order
-    @order = Order.find(params[:id]).decorate
+    @order = Order.find(params[:id])
   end
 
   def order_params
